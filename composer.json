@@ -1,0 +1,39 @@
+{
+  "name": "triangle/session",
+  "description": "Triangle Session Component",
+  "type": "library",
+  "keywords": [
+    "localzet",
+    "Triangle",
+    "Session"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "authors": [
+    {
+      "role": "Developer",
+      "name": "Ivan Zorin",
+      "email": "creator@localzet.com",
+      "homepage": "https://github.com/localzet"
+    }
+  ],
+  "support": {
+    "email": "support@localzet.com",
+    "source": "https://github.com/Triangle-org/Session"
+  },
+  "autoload": {
+    "psr-4": {
+      "Triangle\\": "",
+      "Triangle\\Session\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=8.0",
+    "ext-mongodb": "*",
+    "mongodb/mongodb": "^1.19"
+  },
+  "suggest": {
+  },
+  "require-dev": {
+    "triangle/engine": "^6.3"
+  }
+}
