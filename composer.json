@@ -24,15 +24,18 @@
     "psr-4": {
       "Triangle\\": "",
       "Triangle\\Session\\": "src"
-    }
+    },
+    "files": [
+      "src/functions.php"
+    ]
   },
   "require": {
     "php": ">=8.0"
   },
+  "require-dev": {
+    "triangle/engine": ">=6.3"
+  },
   "suggest": {
     "mongodb/mongodb": "For MongoSessionHandler"
-  },
-  "require-dev": {
-    "triangle/engine": "^6.3"
   }
 }
