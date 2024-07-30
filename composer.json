@@ -27,11 +27,10 @@
     }
   },
   "require": {
-    "php": ">=8.0",
-    "ext-mongodb": "*",
-    "mongodb/mongodb": "^1.19"
+    "php": ">=8.0"
   },
   "suggest": {
+    "mongodb/mongodb": "For MongoSessionHandler"
   },
   "require-dev": {
     "triangle/engine": "^6.3"
