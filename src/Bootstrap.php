@@ -44,7 +44,7 @@ class Bootstrap implements BootstrapInterface
      *
      * @return void
      */
-    public static function start(?Server $server): void
+    public static function start(?Server $server = null): void
     {
         if (!$server) {
             return;

@@ -30,10 +30,8 @@
     ]
   },
   "require": {
-    "php": ">=8.0"
-  },
-  "require-dev": {
-    "triangle/engine": "*"
+    "php": ">=8.0",
+    "triangle/engine": ">=6.3"
   },
   "suggest": {
     "mongodb/mongodb": "For MongoSessionHandler"
