@@ -28,7 +28,7 @@ namespace Triangle\Session;
 
 use localzet\Server;
 use localzet\Server\Protocols\Http\Session;
-use Triangle\Engine\Interface\BootstrapInterface;
+use Triangle\Engine\BootstrapInterface;
 use function config;
 use function property_exists;
 
