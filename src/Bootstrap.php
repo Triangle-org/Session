@@ -53,8 +53,10 @@ class Bootstrap implements BootstrapInterface
         // Получаем конфигурацию сессии.
         $config = config('session');
 
-        // Устанавливаем обработчик сессии.
-        Session::handlerClass($config['handler'], $config['config'][$config['type']]);
+        if ($config) {
+            // Устанавливаем обработчик сессии.
+            Session::handlerClass($config['handler'], $config['config'][$config['type']]);
+        }
 
         // Устанавливаем параметры сессии.
         $map = [
