@@ -50,13 +50,8 @@ class Bootstrap implements BootstrapInterface
             return;
         }
 
-        // Получаем конфигурацию сессии.
-        $config = config('session');
-
-        if ($config) {
-            // Устанавливаем обработчик сессии.
-            Session::handlerClass($config['handler'], $config['config'][$config['type']]);
-        }
+        // Устанавливаем обработчик сессии.
+        Session::handlerClass(config("session.handler"), config("session.config." . config("session.type")));
 
         // Устанавливаем параметры сессии.
         $map = [
@@ -72,8 +67,8 @@ class Bootstrap implements BootstrapInterface
             'session_name' => 'name'
         ];
         foreach ($map as $key => $name) {
-            if (isset($config[$key]) && property_exists(Session::class, $name)) {
-                Session::${$name} = $config[$key];
+            if (config("session.$key") && property_exists(Session::class, $name)) {
+                Session::${$name} = config("session.$key");
             }
         }
     }
