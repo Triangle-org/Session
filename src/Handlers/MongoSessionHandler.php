@@ -5,7 +5,7 @@
  * @link        https://github.com/Triangle-org/Session
  *
  * @author      Ivan Zorin <creator@localzet.com>
- * @copyright   Copyright (c) 2023-2024 Triangle Framework Team
+ * @copyright   Copyright © 2016-2026 Localzet Group. All rights reserved.
  * @license     https://www.gnu.org/licenses/agpl-3.0 GNU Affero General Public License v3.0
  *
  *              This program is free software: you can redistribute it and/or modify
@@ -111,7 +111,9 @@ class MongoSessionHandler implements SessionHandlerInterface
     {
         $session = $this->collection->findOne(['_id' => $sessionId]);
         if ($session !== null) {
-            return serialize((array)$session);
+            $data = (array)$session;
+            unset($data['_id'], $data['updated_at']);
+            return serialize($data);
         }
         return '';
     }
@@ -121,7 +123,12 @@ class MongoSessionHandler implements SessionHandlerInterface
      */
     public function write(string $sessionId, string $sessionData): bool
     {
-        $session = ['_id' => $sessionId] + unserialize($sessionData);
+        $data = @unserialize($sessionData, ['allowed_classes' => false]);
+        if (!is_array($data)) {
+            return false;
+        }
+
+        $session = ['_id' => $sessionId] + $data;
         $options = ['upsert' => true];
         $this->collection->replaceOne(['_id' => $sessionId], $session, $options);
         $this->updateTimestamp($sessionId);
