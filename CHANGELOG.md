@@ -2,9 +2,11 @@
 
 Notable changes are recorded here. This project follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - Unreleased
+## [Unreleased]
 
-This dependency change requires the next major package release: Engine 9 uses the Server 7 session API, which is not available in the Engine 8.1 / Server 4 dependency graph.
+---
+
+## [2.0.0] - 2026-11-21
 
 ### Added
 
