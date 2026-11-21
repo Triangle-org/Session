@@ -1,31 +1,18 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+Notable changes are recorded here. This project follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2.0.0] - Unreleased
 
-## [1.0.0] - 2025-01-XX - LTS Release
+This dependency change requires the next major package release: Engine 9 uses the Server 7 session API, which is not available in the Engine 8.1 / Server 4 dependency graph.
 
 ### Added
-- Initial LTS release
-- Full documentation
-- Session management system
-- Multiple session drivers (file, redis, database)
-- Session encryption
-- Session expiration handling
-- Flash data support
 
-### Security
-- Secure session handling
-- Session data encryption
+- Compatibility with Triangle Engine 9 and Localzet Server 7.
+- Runtime compatibility tests for Engine bootstrap, Server session handlers, and file-backed session round trips.
+- A MongoDB integration test for session round trips and persistence behavior.
 
----
+### Changed
 
-## [Unreleased]
-
-### Planned
-- Additional session drivers
-- Session clustering support
-- Performance optimizations
-
+- MongoDB session writes disable PHP object instantiation and reject malformed or non-array payloads.
+- MongoDB session reads restore BSON documents and arrays as PHP arrays.
