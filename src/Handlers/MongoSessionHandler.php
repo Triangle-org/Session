@@ -109,9 +109,12 @@ class MongoSessionHandler implements SessionHandlerInterface
      */
     public function read(string $sessionId): string
     {
-        $session = $this->collection->findOne(['_id' => $sessionId]);
+        $session = $this->collection->findOne(
+            ['_id' => $sessionId],
+            ['typeMap' => ['root' => 'array', 'document' => 'array', 'array' => 'array']],
+        );
         if ($session !== null) {
-            $data = (array)$session;
+            $data = $session;
             unset($data['_id'], $data['updated_at']);
             return serialize($data);
         }

@@ -33,6 +33,10 @@
     "php": "^8.1",
     "triangle/engine": "^9.0"
   },
+  "require-dev": {
+    "ext-mongodb": "*",
+    "mongodb/mongodb": "^2.0"
+  },
   "suggest": {
     "ext-redis": "For RedisSessionHandler and RedisClusterSessionHandler",
     "mongodb/mongodb": "For MongoSessionHandler"
@@ -43,6 +47,7 @@
     }
   },
   "scripts": {
-    "test": "php tests/session-compatibility.php"
+    "test": "php tests/session-compatibility.php",
+    "test:mongo": "php tests/mongo-integration.php"
   }
 }

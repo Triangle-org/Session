@@ -10,7 +10,7 @@ Triangle Session подключает HTTP-сессии Localzet Server к пр�
 ## Установка
 
 ```sh
-composer require triangle/session
+composer require triangle/session:^2.0
 ```
 
 Engine 9 запускает `Triangle\Session\Bootstrap` вместе со встроенными компонентами. Это обновление совместимости предназначено для следующей основной версии: Engine 8.1 устанавливает Server 4, в котором нет используемого пакетом API сессий Server 7. Если приложение не публикует конфигурацию пакета автоматически, вызовите `Triangle\Session\Install::install()` в контексте установки приложения. По умолчанию используется файловое хранилище в каталоге `runtime_path('sessions')`.

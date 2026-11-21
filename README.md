@@ -32,7 +32,7 @@ Triangle Session connects Engine applications to the HTTP session storage provid
 ## Installation
 
 ```sh
-composer require triangle/session
+composer require triangle/session:^2.0
 ```
 
 Engine 9 loads `Triangle\Session\Bootstrap` with its built-in components. This compatibility update is for the next major release because Engine 8.1 resolves to Server 4 and does not provide the Server 7 session API used by this package. To copy the package configuration into an application that does not publish package configuration automatically, run `Triangle\Session\Install::install()` in the application installation context. The default storage driver is `file`; its path comes from `runtime_path('sessions')`.

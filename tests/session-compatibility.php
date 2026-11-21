@@ -25,10 +25,12 @@ namespace MongoDB {
         class Collection
         {
             public static ?array $lastReplacement = null;
+            public static ?array $lastOptions = null;
             public static mixed $lastDocument = null;
 
-            public function findOne(array $filter): mixed
+            public function findOne(array $filter, array $options = []): mixed
             {
+                self::$lastOptions = $options;
                 return self::$lastDocument;
             }
 
@@ -121,13 +123,15 @@ namespace {
         $property->setAccessible(true);
         $property->setValue($mongoHandler, $collection);
 
-        \MongoDB\Collection::$lastDocument = (object)[
+        \MongoDB\Collection::$lastDocument = [
             '_id' => $sessionId,
             'updated_at' => new \MongoDB\BSON\UTCDateTime(),
             'user_id' => 41,
+            'preferences' => ['theme' => 'dark'],
         ];
         $storedData = unserialize($mongoHandler->read($sessionId), ['allowed_classes' => false]);
-        expect($storedData === ['user_id' => 41], 'Mongo storage metadata must not appear in session data.');
+        expect($storedData === ['user_id' => 41, 'preferences' => ['theme' => 'dark']], 'Mongo session reads must preserve nested arrays without storage metadata.');
+        expect(\MongoDB\Collection::$lastOptions['typeMap'] === ['root' => 'array', 'document' => 'array', 'array' => 'array'], 'Mongo session reads must restore BSON documents and arrays as PHP arrays.');
 
         SessionCompatibilityProbe::$woken = false;
         $validPayload = serialize(['name' => 'safe', 'payload' => new SessionCompatibilityProbe()]);
